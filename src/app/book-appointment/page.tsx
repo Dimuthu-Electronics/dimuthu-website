@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { supabase } from "@/lib/supabase";
 
 const serviceTypes = [
   "TV Display Purchase",
@@ -27,8 +28,23 @@ export default function BookAppointmentPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // TODO: Connect to Supabase
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const { error } = await supabase.from("appointments").insert({
+      customer_name: formData.name,
+      phone: formData.phone,
+      email: formData.email || null,
+      service_type: formData.serviceType,
+      preferred_date: formData.preferredDate,
+      preferred_time: formData.preferredTime,
+      description: formData.description || null,
+    });
+
+    if (error) {
+      alert("Something went wrong. Please call us at 071 447 8552 instead.");
+      setSubmitting(false);
+      return;
+    }
+
     setSubmitted(true);
     setSubmitting(false);
   };
