@@ -282,7 +282,7 @@ export default function ProductsPage() {
             <ProductCard
               name="MX10 F8PRO Android 14 TV Stick"
               shortDesc="Plug-and-play TV stick with voice remote. Turn any TV into a Smart TV."
-              price="Rs. 11,900"
+              price="Rs. 14,900"
               whatsappNumber="94774508318"
               images={[
                 "/images/products/tv-stick/1.jpg",
@@ -319,7 +319,7 @@ export default function ProductsPage() {
             <ProductCard
               name="MX10-F1 Android 13 TV Box"
               shortDesc="4K Ultra HD set-top box with voice remote. Full Android TV experience."
-              price="Rs. 14,900"
+              price="Rs. 11,900"
               whatsappNumber="94774508318"
               images={[
                 "/images/products/tv-box/1.png",
