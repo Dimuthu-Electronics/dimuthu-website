@@ -38,7 +38,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Story — with storefront photo */}
+      {/* Our Story */}
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -58,7 +58,7 @@ export default function AboutPage() {
                 <p>
                   Our workshop is equipped with professional-grade tools including microscopes for
                   board-level PCB inspection and repair. When other shops say a TV can&apos;t be
-                  fixed, customers bring it to us — and we often get it working again.
+                  fixed, customers bring it to us and we often get it working again.
                 </p>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <h2 className="text-3xl font-bold text-foreground text-center mb-4">Our Workshop</h2>
           <p className="text-muted text-center max-w-2xl mx-auto mb-10">
-            A look inside where the work happens — our team, tools, and repair processes.
+            A look inside where the work happens. Our team, tools, and repair processes.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="relative rounded-xl overflow-hidden h-56">
@@ -122,7 +122,7 @@ export default function AboutPage() {
               <h3 className="text-lg font-semibold text-foreground mb-2">Brands We Service</h3>
               <p className="text-muted text-sm leading-relaxed">
                 Samsung, LG, Sony, Philips, Toshiba, Hisense, TCL, Sharp, Hitachi, Haier, JVC,
-                Innovex, Softlogic, Panasonic — and more.
+                Innovex, Softlogic, Panasonic, and more.
               </p>
             </div>
             <div className="border border-border rounded-xl p-6">

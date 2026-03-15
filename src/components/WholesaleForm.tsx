@@ -42,7 +42,7 @@ export default function WholesaleForm() {
     if (filledRows.length === 0) return;
 
     const displayList = filledRows
-      .map((r) => `${r.quantity}x ${r.size} — ${r.model || "Any model"}`)
+      .map((r) => `${r.quantity}x ${r.size} (${r.model || "Any model"})`)
       .join("\n");
 
     const message = encodeURIComponent(
@@ -208,7 +208,7 @@ export default function WholesaleForm() {
           ))}
         </div>
 
-        {/* Column headers hint — desktop only */}
+        {/* Column headers hint - desktop only */}
         {rows.length === 1 && (
           <div className="hidden sm:flex gap-3 mt-1 px-3 text-xs text-muted">
             <span className="w-36 shrink-0">Display size</span>

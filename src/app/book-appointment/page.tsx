@@ -83,7 +83,7 @@ export default function BookAppointmentPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <h1 className="text-3xl md:text-4xl font-bold">Book an Appointment</h1>
           <p className="mt-3 text-blue-100 max-w-2xl text-lg">
-            Schedule a visit for repairs, installation, or purchases. Or just walk in — we&apos;re at 266 Negombo Road, Ja-Ela.
+            Schedule a visit for repairs, installation, or purchases. Or just walk in, we&apos;re at 266 Negombo Road, Ja-Ela.
           </p>
         </div>
       </section>

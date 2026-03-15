@@ -147,7 +147,7 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Retail — Available Displays */}
+      {/* Retail: Available Displays */}
       <section className="bg-light-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="text-center mb-10">
@@ -158,7 +158,7 @@ export default function ProductsPage() {
               Available Displays
             </h2>
             <p className="mt-2 text-muted max-w-xl mx-auto">
-              Original LED display panels — all major brands. Contact us for pricing.
+              Original LED display panels, all major brands. Contact us for pricing.
             </p>
           </div>
 
@@ -193,7 +193,7 @@ export default function ProductsPage() {
                       <svg className="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      Original panel — all major brands
+                      Original panel, all major brands
                     </li>
                     <li className="flex items-center gap-2 text-sm text-accent font-medium">
                       <svg className="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -268,7 +268,7 @@ export default function ProductsPage() {
                 <div>
                   <h4 className="font-semibold text-foreground">Best Prices</h4>
                   <p className="text-sm text-muted mt-1">
-                    Direct imports from international suppliers — no middlemen, competitive pricing.
+                    Direct imports from international suppliers. No middlemen, competitive pricing.
                   </p>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function ProductsPage() {
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-            {/* Left — info */}
+            {/* Left - info */}
             <div className="lg:col-span-2">
               <span className="inline-block bg-secondary/20 text-secondary-dark text-sm font-semibold px-4 py-1.5 rounded-full mb-3">
                 For Wholesale Buyers
@@ -298,7 +298,7 @@ export default function ProductsPage() {
               <ul className="mt-6 space-y-3">
                 {[
                   "All sizes from 32\" to 65\" available",
-                  "Original panels — Samsung, LG, Sony, and more",
+                  "Original panels: Samsung, LG, Sony, and more",
                   "Competitive bulk pricing",
                   "Dedicated support for wholesale accounts",
                 ].map((item) => (
@@ -320,7 +320,7 @@ export default function ProductsPage() {
               </div>
             </div>
 
-            {/* Right — form */}
+            {/* Right - form */}
             <div className="lg:col-span-3">
               <div className="bg-light-gray rounded-xl p-6 md:p-8">
                 <h3 className="text-lg font-bold text-foreground mb-6">

@@ -136,7 +136,7 @@ export default function FacebookReels() {
             className="snap-center shrink-0 first:ml-4 last:mr-4 sm:first:ml-0 sm:last:mr-0"
           >
             <div className="relative w-[260px] h-[462px] sm:w-[280px] sm:h-[498px] md:w-[300px] md:h-[534px] rounded-2xl overflow-hidden shadow-xl shadow-black/40 transition-transform duration-300 hover:scale-[1.02]">
-              {/* Video — autoplays when in view */}
+              {/* Video - autoplays when in view */}
               <video
                 ref={(el) => { videoRefs.current[i] = el; }}
                 src={reel.video}
@@ -147,7 +147,7 @@ export default function FacebookReels() {
                 preload="metadata"
               />
 
-              {/* Facebook badge — opens reel on Facebook */}
+              {/* Facebook badge - opens reel on Facebook */}
               <a
                 href={reel.fbUrl}
                 target="_blank"

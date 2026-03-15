@@ -21,7 +21,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <h1 className="text-3xl md:text-4xl font-bold">Contact Us</h1>
           <p className="mt-3 text-blue-100 max-w-2xl text-lg">
-            Visit our shop on Negombo Road, Ja-Ela — or reach out by phone, WhatsApp, or the form below.
+            Visit our shop on Negombo Road, Ja-Ela or reach out by phone, WhatsApp, or the form below.
           </p>
         </div>
       </section>

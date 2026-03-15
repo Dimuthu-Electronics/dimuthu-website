@@ -42,7 +42,7 @@ const brands = [
 export default function Home() {
   return (
     <>
-      {/* Hero Section — storefront background */}
+      {/* Hero Section */}
       <section className="relative">
         <div className="absolute inset-0">
           <Image
@@ -56,14 +56,14 @@ export default function Home() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="max-w-2xl">
-            <p className="text-secondary font-semibold mb-2">Since 1996 — Ja-Ela, Sri Lanka</p>
+            <p className="text-secondary font-semibold mb-2">Since 1996, Ja-Ela, Sri Lanka</p>
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               LED & LCD TV Displays,
               <br />Installation & Repairs
             </h1>
             <p className="mt-5 text-lg text-gray-300 max-w-xl">
               We import LED/LCD display panels, install TVs for homes and businesses,
-              and repair all major brands — Samsung, LG, Sony, Philips, and more.
+              and repair all major brands including Samsung, LG, Sony, Philips, and more.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Facebook Reels — right below hero for max visibility */}
+      {/* Facebook Reels */}
       <section className="bg-white border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
           <div className="text-center mb-8">
@@ -150,13 +150,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Overview — with real photos */}
+      {/* Services Overview */}
       <section className="bg-light-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">What We Do</h2>
             <p className="mt-3 text-muted">
-              Sales, installation, and repairs — everything for your TV display needs
+              Sales, installation, and repairs for all your TV display needs
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -169,7 +169,7 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-foreground mb-2">TV Display Sales</h3>
                 <p className="text-muted text-sm leading-relaxed">
                   LED and LCD panels from 32&quot; to 75&quot;. We import Samsung, LG, Sony, Hisense, and
-                  other brands directly — so you get better prices.
+                  other brands directly, so you get better prices.
                 </p>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us — with real photo */}
+      {/* Why Choose Us */}
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -228,7 +228,7 @@ export default function Home() {
               </p>
               <ul className="mt-6 space-y-3">
                 {[
-                  "Direct imports — no middlemen, better prices",
+                  "Direct imports, no middlemen, better prices",
                   "We stock Samsung, LG, Sony, Philips, Toshiba, and more",
                   "Genuine replacement panels with warranty",
                   "Same-week turnaround on most repairs",
