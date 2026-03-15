@@ -3,8 +3,26 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us - Dimuthu Electronics | Since 1996",
-  description: "Dimuthu Electronics has been serving Ja-Ela and Sri Lanka since 1996. LED/LCD TV displays, installation, and expert repairs.",
+  title: "About Us | 30+ Years of TV Repair Since 1996",
+  description:
+    "Dimuthu Electronics has been serving Ja-Ela and Sri Lanka since 1996. 30,000+ jobs completed, direct panel imports, 14+ brands serviced. LED/LCD TV display sales, installation & expert repairs.",
+  alternates: {
+    canonical: "https://www.dimuthuelectronics.com/about",
+  },
+  openGraph: {
+    title: "About Us | 30+ Years of TV Repair Since 1996 | Dimuthu Electronics",
+    description:
+      "Serving Ja-Ela since 1996. 30,000+ jobs, direct imports, 14+ brands. LED/LCD TV displays, installation & repairs.",
+    url: "https://www.dimuthuelectronics.com/about",
+    images: [
+      {
+        url: "/images/storefront.webp",
+        width: 1200,
+        height: 630,
+        alt: "Dimuthu Electronics storefront in Ja-Ela, Sri Lanka",
+      },
+    ],
+  },
 };
 
 export default function AboutPage() {

@@ -5,14 +5,58 @@ import StarRating from "@/components/StarRating";
 import { reviews, googleRating } from "@/data/reviews";
 
 export const metadata: Metadata = {
-  title: "Reviews - Dimuthu Electronics | Customer Testimonials",
+  title: "Customer Reviews | 4.6 Star Google Rating",
   description:
-    "Read what our customers say about Dimuthu Electronics. 4.6 star rating on Google. LED/LCD TV repairs, installation, and sales in Ja-Ela, Sri Lanka.",
+    "Read 48+ verified Google reviews for Dimuthu Electronics. 4.6 star rating. Trusted TV repair, display sales & installation in Ja-Ela, Sri Lanka since 1996.",
+  alternates: {
+    canonical: "https://www.dimuthuelectronics.com/reviews",
+  },
+  openGraph: {
+    title: "Customer Reviews | 4.6 Star Google Rating | Dimuthu Electronics",
+    description:
+      "48+ verified Google reviews. 4.6 star rating. Trusted TV repair & display sales in Ja-Ela, Sri Lanka.",
+    url: "https://www.dimuthuelectronics.com/reviews",
+    images: [
+      {
+        url: "/images/storefront.webp",
+        width: 1200,
+        height: 630,
+        alt: "Dimuthu Electronics storefront in Ja-Ela, Sri Lanka",
+      },
+    ],
+  },
+};
+
+const reviewsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.dimuthuelectronics.com/#business",
+  name: "Dimuthu Electronics",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: String(googleRating.overall),
+    reviewCount: String(googleRating.totalReviews),
+    bestRating: "5",
+  },
+  review: reviews.slice(0, 6).map((r) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: r.name },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: String(r.rating),
+      bestRating: "5",
+    },
+    reviewBody: r.text,
+  })),
 };
 
 export default function ReviewsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsJsonLd) }}
+      />
       {/* Hero */}
       <section className="bg-gradient-to-r from-primary-dark to-primary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">

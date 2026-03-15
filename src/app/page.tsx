@@ -1,9 +1,37 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import FacebookReels from "@/components/FacebookReels";
 import ReviewCard from "@/components/ReviewCard";
 import StarRating from "@/components/StarRating";
 import { featuredReviews, googleRating } from "@/data/reviews";
+
+export const metadata: Metadata = {
+  title: {
+    absolute:
+      "Dimuthu Electronics | #1 TV Repair, LED/LCD Display Sales & Installation in Ja-Ela, Sri Lanka",
+  },
+  description:
+    "Expert TV repair for Samsung, LG, Sony & all brands. 30+ years experience, 30,000+ jobs completed. LED/LCD display sales, wall mounting & installation. Free diagnostics. Ja-Ela, Sri Lanka. Call 071 447 8552.",
+  alternates: {
+    canonical: "https://www.dimuthuelectronics.com",
+  },
+  openGraph: {
+    title:
+      "Dimuthu Electronics | #1 TV Repair, LED/LCD Display Sales & Installation in Ja-Ela, Sri Lanka",
+    description:
+      "Expert TV repair for Samsung, LG, Sony & all brands. 30+ years, 30,000+ jobs. Free diagnostics. Call 071 447 8552.",
+    url: "https://www.dimuthuelectronics.com",
+    images: [
+      {
+        url: "/images/storefront.webp",
+        width: 1200,
+        height: 630,
+        alt: "Dimuthu Electronics storefront in Ja-Ela, Sri Lanka",
+      },
+    ],
+  },
+};
 
 const brands = [
   "Samsung", "LG", "Sony", "Philips", "Toshiba",

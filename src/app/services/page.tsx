@@ -3,8 +3,134 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services - Dimuthu Electronics | TV Repairs, Installation & Sales",
-  description: "LED/LCD TV repair, display installation, and panel sales in Ja-Ela. Samsung, LG, Sony, and all major brands. Call 071 447 8552.",
+  title: "TV Repair & Installation Services | LED/LCD TV Repairs Ja-Ela",
+  description:
+    "Expert LED/LCD TV repair, screen replacement, backlight repair, motherboard fix, TV wall mounting & installation in Ja-Ela, Sri Lanka. Samsung, LG, Sony, Philips & all brands. Free diagnostics. Call 071 447 8552.",
+  alternates: {
+    canonical: "https://www.dimuthuelectronics.com/services",
+  },
+  openGraph: {
+    title: "TV Repair & Installation Services | Dimuthu Electronics",
+    description:
+      "Expert LED/LCD TV repair, screen replacement, backlight repair, TV installation in Ja-Ela. All brands serviced. Free diagnostics.",
+    url: "https://www.dimuthuelectronics.com/services",
+    images: [
+      {
+        url: "/images/technicians-working.webp",
+        width: 1200,
+        height: 630,
+        alt: "Technicians repairing TVs at Dimuthu Electronics",
+      },
+    ],
+  },
+};
+
+const servicesJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    ...[
+      {
+        name: "LED/LCD TV Repairs",
+        description:
+          "Complete TV repair service including screen replacement, backlight repair, motherboard fix, and power supply repair for all major brands.",
+      },
+      {
+        name: "Display Installation",
+        description:
+          "Professional TV wall mounting, cable management, and display setup for homes, offices, and commercial spaces.",
+      },
+      {
+        name: "Display Panel Sales",
+        description:
+          "Direct import LED and LCD display panels from 32 to 75 inches. Samsung, LG, Sony, Hisense, TCL and more at competitive prices.",
+      },
+      {
+        name: "Board-Level Repairs",
+        description:
+          "Microscope-assisted PCB inspection, component-level soldering, T-CON board repairs, and chip-level diagnostics.",
+      },
+    ].map((s) => ({
+      "@type": "Service",
+      name: s.name,
+      description: s.description,
+      provider: {
+        "@id": "https://www.dimuthuelectronics.com/#business",
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "Sri Lanka",
+      },
+    })),
+    {
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "How much does TV repair cost in Sri Lanka?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "TV repair costs vary depending on the issue. Simple fixes like backlight replacement start from a few thousand rupees, while screen replacements depend on the panel size and brand. We offer free diagnostics so you know the exact cost before committing to a repair.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can you replace a broken TV screen?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, we replace broken TV screens for all major brands including Samsung, LG, Sony, Philips, and more. We import original display panels directly, so we can offer competitive prices on screen replacements from 32 to 75 inches.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How long does TV repair take?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Most repairs are completed within the same week. Simple fixes like backlight repairs can be done within 24 hours. Screen replacements typically take 1-3 days depending on panel availability.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do you repair Samsung, LG, and Sony TVs?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, we repair all major TV brands including Samsung, LG, Sony, Philips, Toshiba, Hisense, TCL, Sharp, Hitachi, Haier, JVC, Innovex, Softlogic, and Panasonic. We have 30+ years of experience with all these brands.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What areas do you serve for TV repair?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "We are based in Ja-Ela on Negombo Road. Customers bring TVs from Ja-Ela, Wattala, Negombo, Colombo, Gampaha, Kandana, Ragama, Kelaniya, and across Sri Lanka. We also offer installation services in these areas.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do you offer warranty on TV repairs?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, we offer warranty on all our repairs and replacement panels. Display panels come with 6-month or 1-year warranty options. If an issue recurs within the warranty period, we fix it free of charge.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "My TV has no picture but has sound — can you fix it?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, this is a common issue usually caused by faulty backlights, a damaged T-CON board, or a failing display panel. We offer free diagnostics to identify the exact cause and provide a repair quote before proceeding.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can old TVs be repaired or should I buy a new one?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "In many cases, old TVs can be repaired at a fraction of the cost of buying new. We specialize in reviving TVs that other shops have written off. Bring it in for a free diagnostic and we will advise you honestly on whether repair is worthwhile.",
+          },
+        },
+      ],
+    },
+  ],
 };
 
 const services = [
@@ -69,6 +195,10 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
+      />
       {/* Hero */}
       <section className="bg-gradient-to-r from-primary-dark to-primary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">

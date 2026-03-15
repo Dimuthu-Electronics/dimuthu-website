@@ -4,9 +4,75 @@ import WholesaleForm from "@/components/WholesaleForm";
 import ProductCard from "@/components/ProductCard";
 
 export const metadata: Metadata = {
-  title: "Products - Dimuthu Electronics | LED/LCD TV Displays",
+  title: "LED/LCD TV Display Panels & Android TV Boxes | Buy in Sri Lanka",
   description:
-    "Original LED/LCD TV displays from 32\" to 65\". Free installation, 6-month and 1-year warranty options. Wholesale orders welcome. Ja-Ela, Sri Lanka.",
+    "Buy original LED/LCD TV display panels (32\" to 65\"), Android TV Stick (Rs. 14,900), Android TV Box (Rs. 11,900). Free installation, warranty included. Wholesale welcome. Dimuthu Electronics, Ja-Ela.",
+  alternates: {
+    canonical: "https://www.dimuthuelectronics.com/products",
+  },
+  openGraph: {
+    title: "LED/LCD TV Display Panels & Android TV Boxes | Dimuthu Electronics",
+    description:
+      "Original LED/LCD TV displays, Android TV Stick Rs. 14,900, TV Box Rs. 11,900. Free installation & warranty. Ja-Ela, Sri Lanka.",
+    url: "https://www.dimuthuelectronics.com/products",
+    images: [
+      {
+        url: "/images/repair-center.webp",
+        width: 1200,
+        height: 630,
+        alt: "TV displays at Dimuthu Electronics showroom",
+      },
+    ],
+  },
+};
+
+const productsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      item: {
+        "@type": "Product",
+        name: "MX10 F8PRO Android 14 TV Stick",
+        description:
+          "Plug-and-play Android 14 TV stick with voice remote, 8K HD output, Bluetooth 5.4, WiFi 5, 2GB RAM + 16GB storage. Turn any TV into a Smart TV.",
+        image:
+          "https://www.dimuthuelectronics.com/images/products/tv-stick/1.jpg",
+        offers: {
+          "@type": "Offer",
+          price: "14900",
+          priceCurrency: "LKR",
+          availability: "https://schema.org/InStock",
+          seller: {
+            "@id": "https://www.dimuthuelectronics.com/#business",
+          },
+        },
+      },
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      item: {
+        "@type": "Product",
+        name: "MX10-F1 Android 13 TV Box",
+        description:
+          "4K Ultra HD Android 13 set-top box with voice remote, dual-band WiFi, 2GB RAM + 16GB Samsung eMMC storage. Full Android TV experience.",
+        image:
+          "https://www.dimuthuelectronics.com/images/products/tv-box/1.png",
+        offers: {
+          "@type": "Offer",
+          price: "11900",
+          priceCurrency: "LKR",
+          availability: "https://schema.org/InStock",
+          seller: {
+            "@id": "https://www.dimuthuelectronics.com/#business",
+          },
+        },
+      },
+    },
+  ],
 };
 
 const displays = [
@@ -21,6 +87,10 @@ const displays = [
 export default function ProductsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productsJsonLd) }}
+      />
       {/* Hero */}
       <section className="bg-gradient-to-r from-primary-dark to-primary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
