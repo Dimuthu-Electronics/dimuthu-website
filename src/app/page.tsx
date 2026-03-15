@@ -115,7 +115,7 @@ export default function Home() {
               <div className="mt-1 text-sm text-muted">Brands We Service</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-primary">16,000+</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary">30,000+</div>
               <div className="mt-1 text-sm text-muted">Jobs Completed</div>
             </div>
           </div>
