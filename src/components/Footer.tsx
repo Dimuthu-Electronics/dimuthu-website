@@ -91,6 +91,9 @@ export default function Footer() {
           <p className="text-gray-400 text-sm">
             &copy; {new Date().getFullYear()} Dimuthu Electronics. All rights reserved.
           </p>
+          <p className="text-gray-500 text-xs">
+            Website by Moriah Systems
+          </p>
           <div className="flex items-center gap-4">
             <a
               href="https://www.facebook.com/p/Dimuthu-Electronics-100063125384683/"
