@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dimuthu Electronics - Official Website
 
-## Getting Started
+Modern, responsive business website for Dimuthu Electronics. Companion to the [Dimuthu Electronics Manager](https://github.com/Dimuthu-Electronics/dimuthu-desktop) desktop CRM, sharing the same Supabase backend so customer-facing actions (appointment bookings, enquiries) flow directly into the staff-facing app.
 
-First, run the development server:
+**Live site:** https://dimuthu-website.vercel.app
+
+## Features
+
+- Product showcase
+- Service listings and business information
+- Appointment booking form that writes into the shared Supabase backend
+- Customer reviews and ratings
+- Wholesale enquiry form
+- WhatsApp direct contact button
+- Facebook Reels embed for marketing content
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript (strict)
+- **UI:** React 19, Tailwind CSS 4
+- **Backend:** Supabase (PostgreSQL + client SDK)
+- **Hosting:** Vercel
+- **Security headers:** `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` configured via `next.config`
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The site runs at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+```
 
-## Learn More
+## Build and deploy
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build    # produces .next/
+npm run start    # serves the production build locally
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Deployment is wired to Vercel: pushes to `main` trigger a production build automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Related project
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Dimuthu Electronics Manager (desktop CRM)](https://github.com/Dimuthu-Electronics/dimuthu-desktop)
