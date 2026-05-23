@@ -1,6 +1,6 @@
 # Dimuthu Electronics - Official Website
 
-Modern, responsive business website for Dimuthu Electronics. Companion to the [Dimuthu Electronics Manager](https://github.com/Dimuthu-Electronics/dimuthu-desktop) desktop CRM, sharing the same Supabase backend so customer-facing actions (appointment bookings, enquiries) flow directly into the staff-facing app.
+Modern, responsive business website for Dimuthu Electronics. Companion to the Dimuthu Electronics Manager desktop CRM (internal, code not public), sharing the same Supabase backend so customer-facing actions (appointment bookings, enquiries) flow directly into the staff-facing app.
 
 **Live site:** https://dimuthu-website.vercel.app
 
@@ -48,6 +48,3 @@ npm run start    # serves the production build locally
 
 Deployment is wired to Vercel: pushes to `main` trigger a production build automatically.
 
-## Related project
-
-- [Dimuthu Electronics Manager (desktop CRM)](https://github.com/Dimuthu-Electronics/dimuthu-desktop)
