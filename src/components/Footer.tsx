@@ -92,7 +92,15 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Dimuthu Electronics. All rights reserved.
           </p>
           <p className="text-gray-500 text-xs">
-            Website by Moriah Systems
+            Website by{" "}
+            <a
+              href="https://www.linkedin.com/in/dinuwan-fernando/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors underline-offset-2 hover:underline"
+            >
+              Dinuwan Fernando
+            </a>
           </p>
           <div className="flex items-center gap-4">
             <a

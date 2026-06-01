@@ -71,10 +71,11 @@ export const metadata: Metadata = {
       "LED/LCD TV display sales, professional installation, and expert repair services in Ja-Ela, Sri Lanka. 30+ years experience. Call 071 447 8552.",
     images: [
       {
-        url: "/images/storefront.webp",
+        url: "/images/storefront-og.jpg",
         width: 1200,
         height: 630,
         alt: "Dimuthu Electronics storefront in Ja-Ela, Sri Lanka",
+        type: "image/jpeg",
       },
     ],
   },
@@ -84,7 +85,7 @@ export const metadata: Metadata = {
       "Dimuthu Electronics | #1 TV Repair, Display Sales & Installation in Sri Lanka",
     description:
       "LED/LCD TV display sales, professional installation, and expert repair services in Ja-Ela, Sri Lanka. 30+ years experience.",
-    images: ["/images/storefront.webp"],
+    images: ["/images/storefront-og.jpg"],
   },
   robots: {
     index: true,
