@@ -65,7 +65,7 @@ export default function ContactPage() {
                   </svg>
                   <div>
                     <p className="text-sm text-muted">WhatsApp</p>
-                    <a href="https://wa.me/94774508318" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium text-sm hover:text-primary transition-colors">077 450 8318</a>
+                    <a href="https://wa.me/94711114767" target="_blank" rel="noopener noreferrer" className="text-foreground font-medium text-sm hover:text-primary transition-colors">071 111 4767</a>
                   </div>
                 </div>
 

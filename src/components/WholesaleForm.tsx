@@ -49,7 +49,7 @@ export default function WholesaleForm() {
       `*Wholesale Quotation Request*\n\nName: ${name}\nPhone: ${phone}${email ? `\nEmail: ${email}` : ""}${company ? `\nCompany: ${company}` : ""}\n\n*Displays Needed:*\n${displayList}${notes ? `\n\n*Notes:* ${notes}` : ""}`
     );
 
-    window.open(`https://wa.me/94774508318?text=${message}`, "_blank");
+    window.open(`https://wa.me/94711114767?text=${message}`, "_blank");
     setSubmitted(true);
   };
 

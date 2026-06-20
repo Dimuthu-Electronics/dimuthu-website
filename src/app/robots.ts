@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://www.dimuthuelectronics.com/sitemap.xml",
+    sitemap: "https://dimuthuelectronics.com/sitemap.xml",
   };
 }

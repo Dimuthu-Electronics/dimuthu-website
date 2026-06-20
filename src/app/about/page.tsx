@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Dimuthu Electronics has been serving Ja-Ela and Sri Lanka since 1996. 30,000+ jobs completed, direct panel imports, 14+ brands serviced. LED/LCD TV display sales, installation & expert repairs.",
   alternates: {
-    canonical: "https://www.dimuthuelectronics.com/about",
+    canonical: "https://dimuthuelectronics.com/about",
   },
   openGraph: {
     title: "About Us | 30+ Years of TV Repair Since 1996 | Dimuthu Electronics",
     description:
       "Serving Ja-Ela since 1996. 30,000+ jobs, direct imports, 14+ brands. LED/LCD TV displays, installation & repairs.",
-    url: "https://www.dimuthuelectronics.com/about",
+    url: "https://dimuthuelectronics.com/about",
     images: [
       {
         url: "/images/storefront.webp",

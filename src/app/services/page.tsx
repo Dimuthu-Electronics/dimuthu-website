@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     "Expert LED/LCD TV repair, screen replacement, backlight repair, motherboard fix, TV wall mounting & installation in Ja-Ela, Sri Lanka. Samsung, LG, Sony, Philips & all brands. Free diagnostics. Call 071 447 8552.",
   alternates: {
-    canonical: "https://www.dimuthuelectronics.com/services",
+    canonical: "https://dimuthuelectronics.com/services",
   },
   openGraph: {
     title: "TV Repair & Installation Services | Dimuthu Electronics",
     description:
       "Expert LED/LCD TV repair, screen replacement, backlight repair, TV installation in Ja-Ela. All brands serviced. Free diagnostics.",
-    url: "https://www.dimuthuelectronics.com/services",
+    url: "https://dimuthuelectronics.com/services",
     images: [
       {
         url: "/images/technicians-working.webp",
@@ -54,7 +54,7 @@ const servicesJsonLd = {
       name: s.name,
       description: s.description,
       provider: {
-        "@id": "https://www.dimuthuelectronics.com/#business",
+        "@id": "https://dimuthuelectronics.com/#business",
       },
       areaServed: {
         "@type": "Country",

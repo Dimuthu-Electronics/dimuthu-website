@@ -14,14 +14,14 @@ export const metadata: Metadata = {
   description:
     "Expert TV repair for Samsung, LG, Sony & all brands. 30+ years experience, 30,000+ jobs completed. LED/LCD display sales, wall mounting & installation. Free diagnostics. Ja-Ela, Sri Lanka. Call 071 447 8552.",
   alternates: {
-    canonical: "https://www.dimuthuelectronics.com",
+    canonical: "https://dimuthuelectronics.com",
   },
   openGraph: {
     title:
       "Dimuthu Electronics | #1 TV Repair, LED/LCD Display Sales & Installation in Ja-Ela, Sri Lanka",
     description:
       "Expert TV repair for Samsung, LG, Sony & all brands. 30+ years, 30,000+ jobs. Free diagnostics. Call 071 447 8552.",
-    url: "https://www.dimuthuelectronics.com",
+    url: "https://dimuthuelectronics.com",
     images: [
       {
         url: "/images/storefront.webp",
@@ -338,7 +338,7 @@ export default function Home() {
               Book an Appointment
             </Link>
             <a
-              href="https://wa.me/94774508318"
+              href="https://wa.me/94711114767"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-3 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-colors"

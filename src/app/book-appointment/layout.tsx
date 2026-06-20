@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Book an appointment for TV repair, display installation, or panel replacement at Dimuthu Electronics, Ja-Ela. Free diagnostics. Same-week turnaround on most repairs.",
   alternates: {
-    canonical: "https://www.dimuthuelectronics.com/book-appointment",
+    canonical: "https://dimuthuelectronics.com/book-appointment",
   },
   openGraph: {
     title: "Book an Appointment | TV Repair & Installation | Dimuthu Electronics",
     description:
       "Book an appointment for TV repair, display installation, or panel replacement. Free diagnostics. Ja-Ela, Sri Lanka.",
-    url: "https://www.dimuthuelectronics.com/book-appointment",
+    url: "https://dimuthuelectronics.com/book-appointment",
     images: [
       {
         url: "/images/storefront.webp",

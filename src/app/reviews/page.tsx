@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     "Read 48+ verified Google reviews for Dimuthu Electronics. 4.6 star rating. Trusted TV repair, display sales & installation in Ja-Ela, Sri Lanka since 1996.",
   alternates: {
-    canonical: "https://www.dimuthuelectronics.com/reviews",
+    canonical: "https://dimuthuelectronics.com/reviews",
   },
   openGraph: {
     title: "Customer Reviews | 4.6 Star Google Rating | Dimuthu Electronics",
     description:
       "48+ verified Google reviews. 4.6 star rating. Trusted TV repair & display sales in Ja-Ela, Sri Lanka.",
-    url: "https://www.dimuthuelectronics.com/reviews",
+    url: "https://dimuthuelectronics.com/reviews",
     images: [
       {
         url: "/images/storefront.webp",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 const reviewsJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://www.dimuthuelectronics.com/#business",
+  "@id": "https://dimuthuelectronics.com/#business",
   name: "Dimuthu Electronics",
   aggregateRating: {
     "@type": "AggregateRating",

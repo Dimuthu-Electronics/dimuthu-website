@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "Buy original LED/LCD TV display panels (32\" to 65\"), Android TV Stick (Rs. 14,900), Android TV Box (Rs. 11,900). Free installation, warranty included. Wholesale welcome. Dimuthu Electronics, Ja-Ela.",
   alternates: {
-    canonical: "https://www.dimuthuelectronics.com/products",
+    canonical: "https://dimuthuelectronics.com/products",
   },
   openGraph: {
     title: "LED/LCD TV Display Panels & Android TV Boxes | Dimuthu Electronics",
     description:
       "Original LED/LCD TV displays, Android TV Stick Rs. 14,900, TV Box Rs. 11,900. Free installation & warranty. Ja-Ela, Sri Lanka.",
-    url: "https://www.dimuthuelectronics.com/products",
+    url: "https://dimuthuelectronics.com/products",
     images: [
       {
         url: "/images/repair-center.webp",
@@ -39,14 +39,14 @@ const productsJsonLd = {
         description:
           "Plug-and-play Android 14 TV stick with voice remote, 8K HD output, Bluetooth 5.4, WiFi 5, 2GB RAM + 16GB storage. Turn any TV into a Smart TV.",
         image:
-          "https://www.dimuthuelectronics.com/images/products/tv-stick/1.jpg",
+          "https://dimuthuelectronics.com/images/products/tv-stick/1.jpg",
         offers: {
           "@type": "Offer",
           price: "14900",
           priceCurrency: "LKR",
           availability: "https://schema.org/InStock",
           seller: {
-            "@id": "https://www.dimuthuelectronics.com/#business",
+            "@id": "https://dimuthuelectronics.com/#business",
           },
         },
       },
@@ -60,14 +60,14 @@ const productsJsonLd = {
         description:
           "4K Ultra HD Android 13 set-top box with voice remote, dual-band WiFi, 2GB RAM + 16GB Samsung eMMC storage. Full Android TV experience.",
         image:
-          "https://www.dimuthuelectronics.com/images/products/tv-box/1.png",
+          "https://dimuthuelectronics.com/images/products/tv-box/1.png",
         offers: {
           "@type": "Offer",
           price: "11900",
           priceCurrency: "LKR",
           availability: "https://schema.org/InStock",
           seller: {
-            "@id": "https://www.dimuthuelectronics.com/#business",
+            "@id": "https://dimuthuelectronics.com/#business",
           },
         },
       },
@@ -134,7 +134,7 @@ export default function ProductsPage() {
                   Call for Prices
                 </a>
                 <a
-                  href="https://wa.me/94774508318"
+                  href="https://wa.me/94711114767"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-4 py-2 border border-border text-foreground text-sm font-medium rounded-lg hover:bg-light-gray transition-colors"
@@ -211,7 +211,7 @@ export default function ProductsPage() {
 
                   <div className="pt-3 border-t border-border flex gap-2">
                     <a
-                      href={`https://wa.me/94774508318?text=${encodeURIComponent(`Hi, I'd like to know the price for a ${display.size} LED Original Display.`)}`}
+                      href={`https://wa.me/94711114767?text=${encodeURIComponent(`Hi, I'd like to know the price for a ${display.size} LED Original Display.`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-dark transition-colors"
@@ -353,7 +353,7 @@ export default function ProductsPage() {
               name="MX10 F8PRO Android 14 TV Stick"
               shortDesc="Plug-and-play TV stick with voice remote. Turn any TV into a Smart TV."
               price="Rs. 14,900"
-              whatsappNumber="94774508318"
+              whatsappNumber="94711114767"
               images={[
                 "/images/products/tv-stick/1.jpg",
                 "/images/products/tv-stick/2.jpg",
@@ -390,7 +390,7 @@ export default function ProductsPage() {
               name="MX10-F1 Android 13 TV Box"
               shortDesc="4K Ultra HD set-top box with voice remote. Full Android TV experience."
               price="Rs. 11,900"
-              whatsappNumber="94774508318"
+              whatsappNumber="94711114767"
               images={[
                 "/images/products/tv-box/1.png",
                 "/images/products/tv-box/2.jpg",

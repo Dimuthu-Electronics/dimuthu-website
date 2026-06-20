@@ -12,7 +12,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.dimuthuelectronics.com"),
+  metadataBase: new URL("https://dimuthuelectronics.com"),
   title: {
     default:
       "Dimuthu Electronics | #1 TV Repair, Display Sales & Installation in Sri Lanka",
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://www.dimuthuelectronics.com",
+    canonical: "https://dimuthuelectronics.com",
   },
 };
 
@@ -106,15 +106,15 @@ const jsonLd = {
   "@graph": [
     {
       "@type": ["LocalBusiness", "ElectronicsStore"],
-      "@id": "https://www.dimuthuelectronics.com/#business",
+      "@id": "https://dimuthuelectronics.com/#business",
       name: "Dimuthu Electronics",
       description:
         "LED/LCD TV display sales, professional installation, and expert repair services in Ja-Ela, Sri Lanka. Serving since 1996.",
-      url: "https://www.dimuthuelectronics.com",
+      url: "https://dimuthuelectronics.com",
       telephone: "+94714478552",
       foundingDate: "1996",
-      image: "https://www.dimuthuelectronics.com/images/storefront.webp",
-      logo: "https://www.dimuthuelectronics.com/images/storefront.webp",
+      image: "https://dimuthuelectronics.com/images/storefront.webp",
+      logo: "https://dimuthuelectronics.com/images/storefront.webp",
       address: {
         "@type": "PostalAddress",
         streetAddress: "266 Negombo Road",
@@ -200,19 +200,19 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.dimuthuelectronics.com/#website",
-      url: "https://www.dimuthuelectronics.com",
+      "@id": "https://dimuthuelectronics.com/#website",
+      url: "https://dimuthuelectronics.com",
       name: "Dimuthu Electronics",
       publisher: {
-        "@id": "https://www.dimuthuelectronics.com/#business",
+        "@id": "https://dimuthuelectronics.com/#business",
       },
     },
     {
       "@type": "Organization",
-      "@id": "https://www.dimuthuelectronics.com/#organization",
+      "@id": "https://dimuthuelectronics.com/#organization",
       name: "Dimuthu Electronics",
-      url: "https://www.dimuthuelectronics.com",
-      logo: "https://www.dimuthuelectronics.com/images/storefront.webp",
+      url: "https://dimuthuelectronics.com",
+      logo: "https://dimuthuelectronics.com/images/storefront.webp",
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+94714478552",

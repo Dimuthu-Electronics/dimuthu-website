@@ -3,15 +3,15 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact Us | Ja-Ela, Sri Lanka",
   description:
-    "Contact Dimuthu Electronics at 266 Negombo Road, Ja-Ela 11350, Sri Lanka. Call 071 447 8552 or 077 450 8318. Open Mon-Sat 9 AM to 5:30 PM. TV repair, display sales & installation.",
+    "Contact Dimuthu Electronics at 266 Negombo Road, Ja-Ela 11350, Sri Lanka. Call 071 447 8552 or 071 111 4767. Open Mon-Sat 9 AM to 5:30 PM. TV repair, display sales & installation.",
   alternates: {
-    canonical: "https://www.dimuthuelectronics.com/contact",
+    canonical: "https://dimuthuelectronics.com/contact",
   },
   openGraph: {
     title: "Contact Us | Dimuthu Electronics | Ja-Ela, Sri Lanka",
     description:
       "266 Negombo Road, Ja-Ela 11350. Call 071 447 8552. Open Mon-Sat 9 AM - 5:30 PM. TV repair, displays & installation.",
-    url: "https://www.dimuthuelectronics.com/contact",
+    url: "https://dimuthuelectronics.com/contact",
     images: [
       {
         url: "/images/storefront.webp",
