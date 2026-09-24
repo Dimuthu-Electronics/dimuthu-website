@@ -113,6 +113,37 @@ Back on the Meta app dashboard → **WhatsApp → Configuration → Edit**:
 
 ---
 
+## 5a. Subscribe the WhatsApp account to your app
+
+**This step has no button in the dashboard and everything looks fine without
+it.** Subscribing the `messages` webhook field is not enough: the WhatsApp
+Business Account itself has to be subscribed to *your* app. Out of the box it is
+subscribed to Meta's own internal app ("WA DevX Webhook Events 1P App"), so
+messages you send are delivered to Meta's test viewer and your webhook is never
+called. The symptom is maddening — two grey ticks in WhatsApp, a green webhook,
+Meta's "Send to server" test arriving fine, and zero POSTs in the Vercel logs.
+
+Check it by pasting this into the browser address bar, with your WhatsApp
+Business account ID and an access token from the API Setup page:
+
+```
+https://graph.facebook.com/v22.0/<WABA_ID>/subscribed_apps?access_token=<TOKEN>
+```
+
+If the name that comes back is anything other than your app, fix it in the
+**Graph API Explorer** (`developers.facebook.com/tools/explorer/`):
+
+1. Paste the same access token into the **Access Token** box
+2. Set **Meta App** to your app; permissions should list
+   `whatsapp_business_management` and `whatsapp_business_messaging`
+3. Change the method dropdown from **GET** to **POST**
+4. Set the path to `<WABA_ID>/subscribed_apps`
+5. **Submit** — you want `{"success": true}`
+
+This sticks permanently; it never needs doing again.
+
+---
+
 ## 6. First test
 
 Message the bot number from your phone:
@@ -193,7 +224,8 @@ check **Vercel → your project → Logs** and filter for `[whatsapp]`.
 
 | Symptom | Cause |
 |---|---|
-| No reply at all | Your number isn't in `WHATSAPP_ALLOWED_SENDERS`, or the webhook isn't subscribed to **messages** |
+| No reply, and no POST in the Vercel logs | The WhatsApp account isn't subscribed to your app — see §5a. This is by far the most likely cause |
+| No reply, but a POST *does* appear in the logs | Your number isn't matching `WHATSAPP_ALLOWED_SENDERS`, or the webhook isn't subscribed to **messages** |
 | `Invalid OAuth access token` | `WHATSAPP_TOKEN` is wrong or expired — regenerate a permanent one (step 3.6) |
 | Webhook won't verify | `WHATSAPP_VERIFY_TOKEN` in Vercel doesn't match what you typed in Meta, or you didn't redeploy after adding it |
 | `Recipient phone number not in allowed list` | Add the number under **API Setup → Manage phone number list** |
