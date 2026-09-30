@@ -8,7 +8,7 @@
  *
  *   Anushka Perera
  *   0771234567
- *   32" display replacement = 25000
+ *   Philips 40PFT5100, Display replacement = 25000
  *   paid: 5000 checking fee
  */
 
@@ -49,9 +49,14 @@ paid: 5000 checking fee   (or "paid" if settled in full)
 note: Old panel returned to customer
 method: cash / card / bank
 
-*Two more tricks:*
-Panel x2 = 18000        -> quantity 2
-LC320DXJ | 32" display = 25000   -> model code before the |`;
+*To fill the MODEL column, put it before a comma:*
+Philips 40PFT5100, Display replacement = 55000
+JVC 32" LED TV, Board replacement = 17500
+
+A dash or a | works the same way. No comma? The whole line is the description.
+
+*Quantity:*
+Panel adhesive tape x2 = 1200`;
 
 const PREFIX = /^(addr|address|note|notes|warranty|paid|method)\s*[:=]\s*(.*)$/i;
 /** 7+ digits, optional +, spaces/dashes/brackets — and no letters anywhere. */
@@ -60,6 +65,13 @@ const PHONE = /^\+?[\d][\d\s\-()]{6,19}$/;
 const PRICED = /^(.*?)[\s=@:]*(?:rs\.?\s*)?(\d[\d,]*(?:\.\d{1,2})?)$/i;
 /** "Panel x2" -> quantity 2. */
 const QTY = /^(.*?)\s*[x×*]\s*(\d{1,4})$/i;
+/**
+ * Splits "model, description" into the PDF's two columns. A comma is the one
+ * separator that costs a single tap on a phone keyboard, which is why it leads;
+ * "|" and a spaced "-" mean the same thing. The dash has to be surrounded by
+ * spaces so "32-inch display" stays one phrase.
+ */
+const MODEL_SPLIT = /\s*\|\s*|\s*,\s*|\s+-\s+/;
 
 const METHODS: Record<string, PaymentMethod> = {
   cash: "cash",
@@ -88,12 +100,14 @@ function parseItem(line: string): Omit<InvoiceItem, "id" | "invoice_id"> | null 
     quantity = Number(qty[2]) || 1;
   }
 
-  // "LC320DXJ | 32-inch display" -> model + description, matching the PDF's columns.
+  // "Philips 40PFT5100, Display replacement" -> the PDF's MODEL and DESCRIPTION
+  // columns. Runs after the price and quantity are stripped, so a price written
+  // "25,000" is long gone and cannot be mistaken for the separator.
   let model = "";
-  const pipe = description.indexOf("|");
-  if (pipe !== -1) {
-    model = description.slice(0, pipe).trim();
-    description = description.slice(pipe + 1).trim();
+  const split = MODEL_SPLIT.exec(description);
+  if (split) {
+    model = description.slice(0, split.index).trim();
+    description = description.slice(split.index + split[0].length).trim();
   }
 
   if (!description && !model) return null;
