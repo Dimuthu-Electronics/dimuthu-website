@@ -193,7 +193,14 @@ Two shortcuts on a job line:
 | Line | Effect |
 |---|---|
 | `Panel adhesive tape x2 = 1200` | quantity 2 |
-| `LC430DUY \| 43" display = 48500` | model code in the MODEL column |
+| `Philips 40PFT5100, Display replacement = 55000` | fills the MODEL column — model before the comma, work after |
+
+A spaced `-` or a `\|` splits the columns the same way; the comma leads because
+it is the only one that costs a single tap on a phone keyboard. A line with no
+separator is all description, and the MODEL column prints `-`. The split runs
+after the price is stripped, so a price typed `55,000` is never mistaken for it
+— but a description that genuinely needs a comma should go on the `note:` line
+instead, or its first half lands in the MODEL column.
 
 The `=` is optional — `Power board repair 4500` works the same. If the bot can't
 read a line it tells you which one instead of guessing.
