@@ -25,8 +25,7 @@ function todayInColombo(): string {
   }).format(new Date());
 }
 
-function safeFilename(name: string, settled: boolean): string {
-  const label = settled ? "Receipt" : "Invoice";
+function safeFilename(name: string, label: string): string {
   const cleaned = name.replace(/[\\/:*?"<>|]/g, "-").replace(/\s+/g, " ").trim();
   return cleaned ? `${label} - ${cleaned}.pdf` : `${label}.pdf`;
 }
@@ -47,7 +46,8 @@ export async function buildInvoicePdf(parsed: ParsedInvoice): Promise<BuiltInvoi
     (sum, item) => sum + Number(item.quantity) * Number(item.unit_price),
     0
   );
-  const advance_paid = parsed.pay_in_full ? total : parsed.advance_paid;
+  // An estimate is quoted before any money changes hands, so "paid" is ignored.
+  const advance_paid = parsed.estimate ? 0 : parsed.pay_in_full ? total : parsed.advance_paid;
 
   const invoice: Invoice = {
     id: "whatsapp",
@@ -70,18 +70,27 @@ export async function buildInvoicePdf(parsed: ParsedInvoice): Promise<BuiltInvoi
   };
 
   const data = await renderToBuffer(
-    <InvoicePDF invoice={invoice} items={items} settings={DEFAULT_SETTINGS} />
+    <InvoicePDF
+      invoice={invoice}
+      items={items}
+      settings={DEFAULT_SETTINGS}
+      estimate={parsed.estimate}
+    />
   );
 
   const { paid, balance } = settlement(invoice);
-  const settled = total > 0 && balance === 0;
-  const lines = [`*${parsed.customer_name}*`, `Total ${formatRupees(total)}`];
+  const settled = !parsed.estimate && total > 0 && balance === 0;
+  const label = parsed.estimate ? "Estimate" : settled ? "Receipt" : "Invoice";
+  const lines = [
+    `*${parsed.customer_name}*`,
+    `${parsed.estimate ? "Estimate" : "Total"} ${formatRupees(total)}`,
+  ];
   if (settled) lines.push("Paid in full");
   else if (paid > 0) lines.push(`Paid ${formatRupees(paid)} · Due ${formatRupees(balance)}`);
 
   return {
     data,
-    filename: safeFilename(parsed.customer_name, settled),
+    filename: safeFilename(parsed.customer_name, label),
     caption: lines.join("\n"),
   };
 }

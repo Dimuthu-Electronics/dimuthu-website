@@ -187,6 +187,7 @@ Optional extras, one per line:
 | `paid` | settled in full — prints the **PAID** stamp, becomes a receipt |
 | `note: Old panel returned` | notes panel |
 | `method: cash / card / bank` | payment method (default cash) |
+| `estimate` | sends an **ESTIMATE** instead — total only, no payment lines, `paid` is ignored. `quote` works too, on any line |
 
 Two shortcuts on a job line:
 
@@ -218,7 +219,9 @@ cp dimuthu-desktop/src/components/InvoicePDF.tsx dimuthu-website/src/components/
 cp dimuthu-desktop/src/lib/format.ts             dimuthu-website/src/lib/format.ts
 ```
 
-They need no edits — the import paths match. The company header, bank details
+They need no edits — the import paths match. The estimate mode lives in
+`InvoicePDF.tsx` (the `estimate` prop) and has been copied into the desktop app
+too, so the two files stay identical; the desktop app simply never uses it. The company header, bank details
 and footer the bot prints live in `src/lib/settings.ts`; keep them the same as
 the app's **Settings** screen.
 

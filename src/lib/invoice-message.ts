@@ -26,6 +26,8 @@ export interface ParsedInvoice {
   notes: string | null;
   warranty: string | null;
   payment_method: PaymentMethod;
+  /** An "estimate" line anywhere: a quoted price, not a bill. */
+  estimate: boolean;
 }
 
 export type ParseResult =
@@ -56,8 +58,13 @@ JVC 32" LED TV, Board replacement = 17500
 A dash or a | works the same way. No comma? The whole line is the description.
 
 *Quantity:*
-Panel adhesive tape x2 = 1200`;
+Panel adhesive tape x2 = 1200
 
+*Estimate instead of an invoice:* add a line that just says
+estimate`;
+
+/** "estimate", "quote" or "quotation" on its own line — "estimate: yes" works too. */
+const ESTIMATE = /^(estimate|quote|quotation)(\s*[:=].*)?$/i;
 const PREFIX = /^(addr|address|note|notes|warranty|paid|method)\s*[:=]\s*(.*)$/i;
 /** 7+ digits, optional +, spaces/dashes/brackets — and no letters anywhere. */
 const PHONE = /^\+?[\d][\d\s\-()]{6,19}$/;
@@ -115,10 +122,14 @@ function parseItem(line: string): Omit<InvoiceItem, "id" | "invoice_id"> | null 
 }
 
 export function parseInvoiceMessage(text: string): ParseResult {
-  const lines = text
+  const allLines = text
     .split("\n")
     .map((line) => line.trim())
     .filter(Boolean);
+
+  // Pulled out first so "Estimate" can sit on any line, even above the name.
+  const estimate = allLines.some((line) => ESTIMATE.test(line));
+  const lines = allLines.filter((line) => !ESTIMATE.test(line));
 
   if (lines.length === 0) return { ok: false, error: "That message was empty." };
 
@@ -133,6 +144,7 @@ export function parseInvoiceMessage(text: string): ParseResult {
     notes: null,
     warranty: null,
     payment_method: "cash",
+    estimate,
   };
 
   const unreadable: string[] = [];

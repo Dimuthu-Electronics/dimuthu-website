@@ -180,9 +180,11 @@ interface InvoicePDFProps {
   invoice: Invoice;
   items: InvoiceItem[];
   settings?: AppSettings;
+  /** A price quoted before the work: no payment, no PAID stamp, total only. */
+  estimate?: boolean;
 }
 
-export default function InvoicePDF({ invoice, items, settings }: InvoicePDFProps) {
+export default function InvoicePDF({ invoice, items, settings, estimate = false }: InvoicePDFProps) {
   const { company, bank, invoice: invoiceSettings } = settings ?? DEFAULT_SETTINGS;
   const subtotal = items.reduce(
     (sum, item) => sum + Number(item.quantity) * Number(item.unit_price),
@@ -195,8 +197,10 @@ export default function InvoicePDF({ invoice, items, settings }: InvoicePDFProps
   // A settled bill IS the customer's receipt, so it says so: heading, totals and
   // PDF title all switch. An unsettled one is a request for payment and carries
   // no status marking.
-  const settled = total > 0 && balance === 0;
-  const docType = settled ? "Receipt" : "Invoice";
+  const settled = !estimate && total > 0 && balance === 0;
+  const docType = estimate ? "Estimate" : settled ? "Receipt" : "Invoice";
+  const showAdvance = paid > 0 && !settled && !estimate;
+  const shownAmount = settled || estimate ? total : balance;
   const hasBankDetails =
     bank.show_on_invoice &&
     !!(bank.account_name || bank.account_number || bank.bank_name || bank.branch);
@@ -259,7 +263,7 @@ export default function InvoicePDF({ invoice, items, settings }: InvoicePDFProps
         {/* ---------- Bill to / invoice meta ---------- */}
         <View style={styles.parties}>
           <View style={styles.partyBox}>
-            <Text style={styles.boxLabel}>Bill To</Text>
+            <Text style={styles.boxLabel}>{estimate ? "Estimate For" : "Bill To"}</Text>
             <Text style={styles.partyName}>{invoice.customer_name}</Text>
             {!!invoice.customer_address && (
               <Text style={styles.partyLine}>{invoice.customer_address}</Text>
@@ -280,14 +284,16 @@ export default function InvoicePDF({ invoice, items, settings }: InvoicePDFProps
               <Text style={styles.metaLabel}>Date</Text>
               <Text style={styles.metaValue}>{formatDate(invoice.invoice_date)}</Text>
             </View>
-            <View style={styles.metaRow}>
-              <Text style={styles.metaLabel}>Payment Method</Text>
-              <Text style={styles.metaValue}>
-                {PAYMENT_METHOD_LABELS[invoice.payment_method] || "Cash"}
-              </Text>
-            </View>
-            {/* Terms are a request to pay — meaningless once the invoice is settled. */}
-            {!settled && !!invoiceSettings.payment_terms && (
+            {!estimate && (
+              <View style={styles.metaRow}>
+                <Text style={styles.metaLabel}>Payment Method</Text>
+                <Text style={styles.metaValue}>
+                  {PAYMENT_METHOD_LABELS[invoice.payment_method] || "Cash"}
+                </Text>
+              </View>
+            )}
+            {/* Terms are a request to pay — meaningless once settled, or before any work. */}
+            {!settled && !estimate && !!invoiceSettings.payment_terms && (
               <View style={styles.metaRow}>
                 <Text style={styles.metaLabel}>Payment Terms</Text>
                 <Text style={styles.metaValue}>{invoiceSettings.payment_terms}</Text>
@@ -330,29 +336,40 @@ export default function InvoicePDF({ invoice, items, settings }: InvoicePDFProps
         <View style={styles.totalsWrap}>
           <View style={styles.wordsBox}>
             <Text style={styles.boxLabel}>
-              {settled ? "Amount Paid in Words" : "Amount Due in Words"}
+              {estimate
+                ? "Estimated Total in Words"
+                : settled
+                  ? "Amount Paid in Words"
+                  : "Amount Due in Words"}
             </Text>
-            <Text style={styles.words}>{amountInWords(settled ? total : balance)}</Text>
+            <Text style={styles.words}>{amountInWords(shownAmount)}</Text>
+            {estimate && (
+              <Text style={{ fontSize: 8, color: MUTED, marginTop: 10, lineHeight: 1.4 }}>
+                This is an estimate, not a bill. The final amount may change once the work is done.
+              </Text>
+            )}
           </View>
           <View style={styles.totalsBox}>
             <View style={styles.totalsRow}>
               <Text style={styles.totalsLabel}>Total</Text>
               <Text style={styles.totalsValue}>Rs. {formatMoney(total)}</Text>
             </View>
-            {paid > 0 && !settled && (
+            {showAdvance && (
               <View style={styles.totalsRow}>
                 <Text style={styles.totalsLabel}>Less: Advance Paid</Text>
                 <Text style={styles.totalsValue}>- Rs. {formatMoney(paid)}</Text>
               </View>
             )}
-            {!!invoice.advance_note && paid > 0 && !settled && (
+            {!!invoice.advance_note && showAdvance && (
               <View style={{ paddingHorizontal: 8, paddingBottom: 4 }}>
                 <Text style={{ fontSize: 7.5, color: MUTED }}>{invoice.advance_note}</Text>
               </View>
             )}
             <View style={styles.grandRow}>
-              <Text style={styles.grandLabel}>{settled ? "AMOUNT PAID" : "AMOUNT DUE"}</Text>
-              <Text style={styles.grandValue}>Rs. {formatMoney(settled ? total : balance)}</Text>
+              <Text style={styles.grandLabel}>
+                {estimate ? "ESTIMATED TOTAL" : settled ? "AMOUNT PAID" : "AMOUNT DUE"}
+              </Text>
+              <Text style={styles.grandValue}>Rs. {formatMoney(shownAmount)}</Text>
             </View>
           </View>
         </View>
