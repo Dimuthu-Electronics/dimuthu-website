@@ -14,6 +14,17 @@ const INK = "#1f2937";
 const MUTED = "#6b7280";
 const LINE = "#e5e7eb";
 
+/** How long an estimate or quotation holds — parts track the dollar and stock. */
+const QUOTE_VALID_DAYS = 7;
+
+/** "2026-11-14" + 7 -> "2026-11-21". Date-only maths in UTC, so no timezone drift. */
+function addDays(isoDate: string, days: number): string {
+  const date = new Date(`${isoDate.slice(0, 10)}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) return isoDate;
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
 const styles = StyleSheet.create({
   page: {
     paddingTop: 32,
@@ -202,6 +213,7 @@ export default function InvoicePDF({ invoice, items, settings, quote }: InvoiceP
   const showAdvance = paid > 0 && !settled && !quote;
   const shownAmount = settled || quote ? total : balance;
   const quotedTotal = quote === "Estimate" ? "Estimated Total" : "Quoted Total";
+  const validUntil = formatDate(addDays(invoice.invoice_date, QUOTE_VALID_DAYS));
   const hasBankDetails =
     bank.show_on_invoice &&
     !!(bank.account_name || bank.account_number || bank.bank_name || bank.branch);
@@ -285,6 +297,12 @@ export default function InvoicePDF({ invoice, items, settings, quote }: InvoiceP
               <Text style={styles.metaLabel}>Date</Text>
               <Text style={styles.metaValue}>{formatDate(invoice.invoice_date)}</Text>
             </View>
+            {!!quote && (
+              <View style={styles.metaRow}>
+                <Text style={styles.metaLabel}>Valid Until</Text>
+                <Text style={styles.metaValue}>{validUntil}</Text>
+              </View>
+            )}
             {!quote && (
               <View style={styles.metaRow}>
                 <Text style={styles.metaLabel}>Payment Method</Text>
@@ -346,8 +364,9 @@ export default function InvoicePDF({ invoice, items, settings, quote }: InvoiceP
             <Text style={styles.words}>{amountInWords(shownAmount)}</Text>
             {!!quote && (
               <Text style={{ fontSize: 8, color: MUTED, marginTop: 10, lineHeight: 1.4 }}>
-                This is {quote === "Estimate" ? "an estimate" : "a quotation"}, not a bill. The
-                final amount may change once the work is done.
+                This is {quote === "Estimate" ? "an estimate" : "a quotation"}, not a bill.
+                Prices are valid until {validUntil} only and may change after that date. The
+                final amount may also change once the work is done.
               </Text>
             )}
           </View>

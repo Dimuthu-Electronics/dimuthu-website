@@ -185,7 +185,7 @@ Optional extras, one per line:
 | `warranty: 6 months on the panel` | warranty block (omitted when blank) |
 | `paid: paid` (or just `paid`) | settled in full — prints the **PAID** stamp, becomes a receipt. **Use this for every final bill**, even when an advance was taken earlier: the receipt shows the full total as paid, with no advance or balance on it |
 | `paid: 15000` | an advance — an invoice showing *Less: Advance Paid* and the balance due. Only for a bill sent before the rest is paid |
-| `paid: estimate` | an **ESTIMATE** — total only, no payment lines |
+| `paid: estimate` | an **ESTIMATE** — total only, no payment lines, prices **valid for 7 days** (printed as a date). Change `QUOTE_VALID_DAYS` in `InvoicePDF.tsx` to alter it |
 | `paid: quotation` | a **QUOTATION** — same as an estimate, different heading |
 | `paid:` left blank | an ordinary invoice — safe to keep in a template |
 | `note: Old panel returned` | notes panel |
