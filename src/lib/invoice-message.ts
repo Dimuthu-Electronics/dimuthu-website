@@ -9,7 +9,7 @@
  *   Anushka Perera
  *   0771234567
  *   Philips 40PFT5100, Display replacement = 25000
- *   paid: 5000 checking fee
+ *   paid: 15000
  */
 
 import type { InvoiceItem, PaymentMethod } from "@/lib/invoices";
@@ -49,7 +49,6 @@ Anushka Perera
 *Optional extras, one per line:*
 addr: 14 Station Road, Ja-Ela
 warranty: 6 months on the replaced panel
-paid: 5000 checking fee
 note: Old panel returned to customer
 method: cash / card / bank
 
@@ -63,11 +62,13 @@ A dash or a | works the same way. No comma? The whole line is the description.
 Panel adhesive tape x2 = 1200
 
 *What the PDF is — decided by the paid: line:*
-paid: paid   → RECEIPT (paid in full)
-paid: 5000   → INVOICE less that advance
+paid: paid   → RECEIPT, full total paid
+paid: 15000   → INVOICE less a 15000 advance
 paid: estimate   → ESTIMATE
 paid: quotation   → QUOTATION
-paid: (left blank) → INVOICE`;
+paid: (left blank) → INVOICE
+
+*Final bill?* Always paid: paid — even if they gave an advance earlier. The receipt shows the full total as paid, with no advance or balance on it.`;
 
 /** "estimate" / "quotation" — in the paid: slot, or on a line of their own. */
 const QUOTE_WORD = /^(estimate|quote|quotation)$/i;
@@ -176,11 +177,12 @@ export function parseInvoiceMessage(text: string): ParseResult {
           invoice.quote = quoteKind(value);
           continue;
         }
-        // "paid: 5000 checking fee" -> amount + what it was for.
+        // "paid: 15000" -> an advance; anything after the amount prints under it,
+        // except the word "advance" itself, which the PDF already says.
         const amount = /^(\d[\d,]*(?:\.\d{1,2})?)\s*(.*)$/.exec(value);
         if (amount) {
           invoice.advance_paid = toNumber(amount[1]);
-          invoice.advance_note = amount[2].trim() || null;
+          invoice.advance_note = amount[2].replace(/^(advance|adv)\b\.?/i, "").trim() || null;
         } else {
           invoice.pay_in_full = true;
           invoice.advance_note = value.replace(/^(full|all|in full)\b/i, "").trim() || null;
