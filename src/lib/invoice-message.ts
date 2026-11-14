@@ -26,9 +26,11 @@ export interface ParsedInvoice {
   notes: string | null;
   warranty: string | null;
   payment_method: PaymentMethod;
-  /** An "estimate" line anywhere: a quoted price, not a bill. */
-  estimate: boolean;
+  /** A price given before the work — set by "paid: estimate" / "paid: quotation". */
+  quote: QuoteKind | null;
 }
+
+export type QuoteKind = "Estimate" | "Quotation";
 
 export type ParseResult =
   | { ok: true; invoice: ParsedInvoice }
@@ -47,7 +49,7 @@ Anushka Perera
 *Optional extras, one per line:*
 addr: 14 Station Road, Ja-Ela
 warranty: 6 months on the replaced panel
-paid: 5000 checking fee   (or "paid" if settled in full)
+paid: 5000 checking fee
 note: Old panel returned to customer
 method: cash / card / bank
 
@@ -60,11 +62,20 @@ A dash or a | works the same way. No comma? The whole line is the description.
 *Quantity:*
 Panel adhesive tape x2 = 1200
 
-*Estimate instead of an invoice:* add a line that just says
-estimate`;
+*What the PDF is — decided by the paid: line:*
+paid: paid   → RECEIPT (paid in full)
+paid: 5000   → INVOICE less that advance
+paid: estimate   → ESTIMATE
+paid: quotation   → QUOTATION
+paid: (left blank) → INVOICE`;
 
-/** "estimate", "quote" or "quotation" on its own line — "estimate: yes" works too. */
-const ESTIMATE = /^(estimate|quote|quotation)(\s*[:=].*)?$/i;
+/** "estimate" / "quotation" — in the paid: slot, or on a line of their own. */
+const QUOTE_WORD = /^(estimate|quote|quotation)$/i;
+const QUOTE_LINE = /^(estimate|quote|quotation)(\s*[:=].*)?$/i;
+
+function quoteKind(word: string): QuoteKind {
+  return /^estimate$/i.test(word) ? "Estimate" : "Quotation";
+}
 const PREFIX = /^(addr|address|note|notes|warranty|paid|method)\s*[:=]\s*(.*)$/i;
 /** 7+ digits, optional +, spaces/dashes/brackets — and no letters anywhere. */
 const PHONE = /^\+?[\d][\d\s\-()]{6,19}$/;
@@ -127,9 +138,9 @@ export function parseInvoiceMessage(text: string): ParseResult {
     .map((line) => line.trim())
     .filter(Boolean);
 
-  // Pulled out first so "Estimate" can sit on any line, even above the name.
-  const estimate = allLines.some((line) => ESTIMATE.test(line));
-  const lines = allLines.filter((line) => !ESTIMATE.test(line));
+  // A bare "estimate" line still works, even above the name, so it is pulled out first.
+  const quoteLine = allLines.find((line) => QUOTE_LINE.test(line));
+  const lines = allLines.filter((line) => !QUOTE_LINE.test(line));
 
   if (lines.length === 0) return { ok: false, error: "That message was empty." };
 
@@ -144,7 +155,7 @@ export function parseInvoiceMessage(text: string): ParseResult {
     notes: null,
     warranty: null,
     payment_method: "cash",
-    estimate,
+    quote: quoteLine ? quoteKind(quoteLine.split(/[\s:=]/)[0]) : null,
   };
 
   const unreadable: string[] = [];
@@ -159,6 +170,12 @@ export function parseInvoiceMessage(text: string): ParseResult {
       else if (key === "warranty") invoice.warranty = value || null;
       else if (key === "method") invoice.payment_method = METHODS[value.toLowerCase()] ?? "cash";
       else if (key === "paid") {
+        // Left blank in a template: an ordinary invoice, nothing paid.
+        if (!value) continue;
+        if (QUOTE_WORD.test(value)) {
+          invoice.quote = quoteKind(value);
+          continue;
+        }
         // "paid: 5000 checking fee" -> amount + what it was for.
         const amount = /^(\d[\d,]*(?:\.\d{1,2})?)\s*(.*)$/.exec(value);
         if (amount) {

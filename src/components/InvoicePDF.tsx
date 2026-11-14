@@ -180,11 +180,11 @@ interface InvoicePDFProps {
   invoice: Invoice;
   items: InvoiceItem[];
   settings?: AppSettings;
-  /** A price quoted before the work: no payment, no PAID stamp, total only. */
-  estimate?: boolean;
+  /** A price given before the work: no payment, no PAID stamp, total only. */
+  quote?: "Estimate" | "Quotation";
 }
 
-export default function InvoicePDF({ invoice, items, settings, estimate = false }: InvoicePDFProps) {
+export default function InvoicePDF({ invoice, items, settings, quote }: InvoicePDFProps) {
   const { company, bank, invoice: invoiceSettings } = settings ?? DEFAULT_SETTINGS;
   const subtotal = items.reduce(
     (sum, item) => sum + Number(item.quantity) * Number(item.unit_price),
@@ -197,10 +197,11 @@ export default function InvoicePDF({ invoice, items, settings, estimate = false 
   // A settled bill IS the customer's receipt, so it says so: heading, totals and
   // PDF title all switch. An unsettled one is a request for payment and carries
   // no status marking.
-  const settled = !estimate && total > 0 && balance === 0;
-  const docType = estimate ? "Estimate" : settled ? "Receipt" : "Invoice";
-  const showAdvance = paid > 0 && !settled && !estimate;
-  const shownAmount = settled || estimate ? total : balance;
+  const settled = !quote && total > 0 && balance === 0;
+  const docType = quote ?? (settled ? "Receipt" : "Invoice");
+  const showAdvance = paid > 0 && !settled && !quote;
+  const shownAmount = settled || quote ? total : balance;
+  const quotedTotal = quote === "Estimate" ? "Estimated Total" : "Quoted Total";
   const hasBankDetails =
     bank.show_on_invoice &&
     !!(bank.account_name || bank.account_number || bank.bank_name || bank.branch);
@@ -263,7 +264,7 @@ export default function InvoicePDF({ invoice, items, settings, estimate = false 
         {/* ---------- Bill to / invoice meta ---------- */}
         <View style={styles.parties}>
           <View style={styles.partyBox}>
-            <Text style={styles.boxLabel}>{estimate ? "Estimate For" : "Bill To"}</Text>
+            <Text style={styles.boxLabel}>{quote ? `${quote} For` : "Bill To"}</Text>
             <Text style={styles.partyName}>{invoice.customer_name}</Text>
             {!!invoice.customer_address && (
               <Text style={styles.partyLine}>{invoice.customer_address}</Text>
@@ -284,7 +285,7 @@ export default function InvoicePDF({ invoice, items, settings, estimate = false 
               <Text style={styles.metaLabel}>Date</Text>
               <Text style={styles.metaValue}>{formatDate(invoice.invoice_date)}</Text>
             </View>
-            {!estimate && (
+            {!quote && (
               <View style={styles.metaRow}>
                 <Text style={styles.metaLabel}>Payment Method</Text>
                 <Text style={styles.metaValue}>
@@ -293,7 +294,7 @@ export default function InvoicePDF({ invoice, items, settings, estimate = false 
               </View>
             )}
             {/* Terms are a request to pay — meaningless once settled, or before any work. */}
-            {!settled && !estimate && !!invoiceSettings.payment_terms && (
+            {!settled && !quote && !!invoiceSettings.payment_terms && (
               <View style={styles.metaRow}>
                 <Text style={styles.metaLabel}>Payment Terms</Text>
                 <Text style={styles.metaValue}>{invoiceSettings.payment_terms}</Text>
@@ -336,16 +337,17 @@ export default function InvoicePDF({ invoice, items, settings, estimate = false 
         <View style={styles.totalsWrap}>
           <View style={styles.wordsBox}>
             <Text style={styles.boxLabel}>
-              {estimate
-                ? "Estimated Total in Words"
+              {quote
+                ? `${quotedTotal} in Words`
                 : settled
                   ? "Amount Paid in Words"
                   : "Amount Due in Words"}
             </Text>
             <Text style={styles.words}>{amountInWords(shownAmount)}</Text>
-            {estimate && (
+            {!!quote && (
               <Text style={{ fontSize: 8, color: MUTED, marginTop: 10, lineHeight: 1.4 }}>
-                This is an estimate, not a bill. The final amount may change once the work is done.
+                This is {quote === "Estimate" ? "an estimate" : "a quotation"}, not a bill. The
+                final amount may change once the work is done.
               </Text>
             )}
           </View>
@@ -367,7 +369,7 @@ export default function InvoicePDF({ invoice, items, settings, estimate = false 
             )}
             <View style={styles.grandRow}>
               <Text style={styles.grandLabel}>
-                {estimate ? "ESTIMATED TOTAL" : settled ? "AMOUNT PAID" : "AMOUNT DUE"}
+                {quote ? quotedTotal.toUpperCase() : settled ? "AMOUNT PAID" : "AMOUNT DUE"}
               </Text>
               <Text style={styles.grandValue}>Rs. {formatMoney(shownAmount)}</Text>
             </View>

@@ -184,10 +184,12 @@ Optional extras, one per line:
 | `addr: 14 Station Road, Ja-Ela` | address under the customer name |
 | `warranty: 6 months on the panel` | warranty block (omitted when blank) |
 | `paid: 5000 checking fee` | advance received, with what it was for |
-| `paid` | settled in full — prints the **PAID** stamp, becomes a receipt |
+| `paid: paid` (or just `paid`) | settled in full — prints the **PAID** stamp, becomes a receipt |
+| `paid: estimate` | an **ESTIMATE** — total only, no payment lines |
+| `paid: quotation` | a **QUOTATION** — same as an estimate, different heading |
+| `paid:` left blank | an ordinary invoice — safe to keep in a template |
 | `note: Old panel returned` | notes panel |
 | `method: cash / card / bank` | payment method (default cash) |
-| `estimate` | sends an **ESTIMATE** instead — total only, no payment lines, `paid` is ignored. `quote` works too, on any line |
 
 Two shortcuts on a job line:
 
@@ -219,8 +221,8 @@ cp dimuthu-desktop/src/components/InvoicePDF.tsx dimuthu-website/src/components/
 cp dimuthu-desktop/src/lib/format.ts             dimuthu-website/src/lib/format.ts
 ```
 
-They need no edits — the import paths match. The estimate mode lives in
-`InvoicePDF.tsx` (the `estimate` prop) and has been copied into the desktop app
+They need no edits — the import paths match. The estimate/quotation mode lives in
+`InvoicePDF.tsx` (the `quote` prop) and has been copied into the desktop app
 too, so the two files stay identical; the desktop app simply never uses it. The company header, bank details
 and footer the bot prints live in `src/lib/settings.ts`; keep them the same as
 the app's **Settings** screen.

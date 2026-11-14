@@ -47,7 +47,7 @@ export async function buildInvoicePdf(parsed: ParsedInvoice): Promise<BuiltInvoi
     0
   );
   // An estimate is quoted before any money changes hands, so "paid" is ignored.
-  const advance_paid = parsed.estimate ? 0 : parsed.pay_in_full ? total : parsed.advance_paid;
+  const advance_paid = parsed.quote ? 0 : parsed.pay_in_full ? total : parsed.advance_paid;
 
   const invoice: Invoice = {
     id: "whatsapp",
@@ -74,17 +74,14 @@ export async function buildInvoicePdf(parsed: ParsedInvoice): Promise<BuiltInvoi
       invoice={invoice}
       items={items}
       settings={DEFAULT_SETTINGS}
-      estimate={parsed.estimate}
+      quote={parsed.quote ?? undefined}
     />
   );
 
   const { paid, balance } = settlement(invoice);
-  const settled = !parsed.estimate && total > 0 && balance === 0;
-  const label = parsed.estimate ? "Estimate" : settled ? "Receipt" : "Invoice";
-  const lines = [
-    `*${parsed.customer_name}*`,
-    `${parsed.estimate ? "Estimate" : "Total"} ${formatRupees(total)}`,
-  ];
+  const settled = !parsed.quote && total > 0 && balance === 0;
+  const label = parsed.quote ?? (settled ? "Receipt" : "Invoice");
+  const lines = [`*${parsed.customer_name}*`, `${parsed.quote ?? "Total"} ${formatRupees(total)}`];
   if (settled) lines.push("Paid in full");
   else if (paid > 0) lines.push(`Paid ${formatRupees(paid)} · Due ${formatRupees(balance)}`);
 
