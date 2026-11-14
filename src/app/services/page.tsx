@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "TV Repair & Installation Services | LED/LCD TV Repairs Ja-Ela",
   description:
-    "Expert LED/LCD TV repair, screen replacement, backlight repair, motherboard fix, TV wall mounting & installation in Ja-Ela, Sri Lanka. Samsung, LG, Sony, Philips & all brands. Free diagnostics. Call 071 447 8552.",
+    "Expert LED/LCD TV repair, screen replacement, backlight repair, motherboard fix, TV wall mounting & installation in Ja-Ela, Sri Lanka. Samsung, LG, Sony, Philips & all brands. Free diagnostics. Call 071 111 4767.",
   alternates: {
     canonical: "https://dimuthuelectronics.com/services",
   },
@@ -205,7 +205,7 @@ export default function ServicesPage() {
           <h1 className="text-3xl md:text-4xl font-bold">Our Services</h1>
           <p className="mt-3 text-blue-100 max-w-2xl text-lg">
             TV display sales, installation, and repairs for all major brands.
-            Visit us at 266 Negombo Road, Ja-Ela or call 071 447 8552.
+            Call 071 111 4767 or book an appointment to visit us at 266 Negombo Road, Ja-Ela.
           </p>
         </div>
       </section>
@@ -265,10 +265,10 @@ export default function ServicesPage() {
               Book an Appointment
             </Link>
             <a
-              href="tel:0714478552"
+              href="tel:0711114767"
               className="inline-flex items-center justify-center px-8 py-3 border border-border text-foreground font-semibold rounded-lg hover:bg-white transition-colors"
             >
-              Call 071 447 8552
+              Call 071 111 4767
             </a>
           </div>
         </div>

@@ -43,7 +43,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
     name: "Dimuthu Electronics",
     tagline: "TV Repair Center and Original LED TV Display Supplier",
     address: "266, Negombo Road, Ja-Ela 11350, Sri Lanka",
-    hotline: "0714478552",
+    hotline: "0711114767",
     phone: "0113625118",
     email_primary: "dimuthuelectronic@gmail.com",
     email_secondary: "dimuthuelec@yahoo.com",

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
       "Dimuthu Electronics | #1 TV Repair, LED/LCD Display Sales & Installation in Ja-Ela, Sri Lanka",
   },
   description:
-    "Expert TV repair for Samsung, LG, Sony & all brands. 30+ years experience, 30,000+ jobs completed. LED/LCD display sales, wall mounting & installation. Free diagnostics. Ja-Ela, Sri Lanka. Call 071 447 8552.",
+    "Expert TV repair for Samsung, LG, Sony & all brands. 30+ years experience, 30,000+ jobs completed. LED/LCD display sales, wall mounting & installation. Free diagnostics. Ja-Ela, Sri Lanka. Call 071 111 4767.",
   alternates: {
     canonical: "https://dimuthuelectronics.com",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title:
       "Dimuthu Electronics | #1 TV Repair, LED/LCD Display Sales & Installation in Ja-Ela, Sri Lanka",
     description:
-      "Expert TV repair for Samsung, LG, Sony & all brands. 30+ years, 30,000+ jobs. Free diagnostics. Call 071 447 8552.",
+      "Expert TV repair for Samsung, LG, Sony & all brands. 30+ years, 30,000+ jobs. Free diagnostics. Call 071 111 4767.",
     url: "https://dimuthuelectronics.com",
     images: [
       {
@@ -73,10 +73,10 @@ export default function Home() {
                 Book an Appointment
               </Link>
               <a
-                href="tel:0714478552"
+                href="tel:0711114767"
                 className="inline-flex items-center justify-center px-6 py-3 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-colors"
               >
-                Call 071 447 8552
+                Call 071 111 4767
               </a>
             </div>
           </div>
@@ -328,7 +328,7 @@ export default function Home() {
             Need a display, installation, or repair?
           </h2>
           <p className="mt-3 text-blue-100 max-w-xl mx-auto">
-            Call us at 071 447 8552 or book online. Walk-ins welcome at our Ja-Ela shop.
+            Call us at 071 111 4767 or book online. Visits to our Ja-Ela shop are by appointment.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
             <Link

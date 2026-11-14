@@ -69,7 +69,7 @@ export default function ContactPage() {
                   </svg>
                   <div>
                     <p className="text-sm text-muted">Phone</p>
-                    <a href="tel:0714478552" className="text-foreground font-medium text-sm hover:text-primary transition-colors">071 447 8552</a>
+                    <a href="tel:0711114767" className="text-foreground font-medium text-sm hover:text-primary transition-colors">071 111 4767</a>
                   </div>
                 </div>
 

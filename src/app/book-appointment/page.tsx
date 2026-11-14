@@ -90,8 +90,8 @@ export default function BookAppointmentPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <h1 className="text-3xl md:text-4xl font-bold">Book an Appointment</h1>
           <p className="mt-3 text-blue-100 max-w-2xl text-lg">
-            Tell us what you need and we&apos;ll arrange it over WhatsApp. Or just walk in, we&apos;re
-            at 266 Negombo Road, Ja-Ela.
+            Tell us what you need and we&apos;ll arrange a time over WhatsApp. Visits to our shop at
+            266 Negombo Road, Ja-Ela are by appointment only.
           </p>
         </div>
       </section>
@@ -178,11 +178,11 @@ export default function BookAppointmentPage() {
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="font-semibold text-foreground mb-3">Prefer to call or WhatsApp?</h3>
                 <div className="space-y-3">
-                  <a href="tel:0714478552" className="flex items-center gap-2 text-primary font-medium hover:text-primary-dark transition-colors">
+                  <a href="tel:0711114767" className="flex items-center gap-2 text-primary font-medium hover:text-primary-dark transition-colors">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    071 447 8552
+                    071 111 4767
                   </a>
                   <a href="https://wa.me/94711114767" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#25D366] font-medium hover:opacity-80 transition-opacity">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -194,10 +194,10 @@ export default function BookAppointmentPage() {
               </div>
 
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-6">
-                <h3 className="font-semibold text-foreground mb-2">Walk-ins welcome</h3>
+                <h3 className="font-semibold text-foreground mb-2">By appointment only</h3>
                 <p className="text-sm text-muted">
-                  You don&apos;t need an appointment for quick inquiries or drop-offs. Visit us at
-                  266 Negombo Road, Ja-Ela during opening hours.
+                  Please book before visiting, even for quick inquiries or drop-offs, so we can make
+                  time for you. Send the form or call us and we&apos;ll confirm a time.
                 </p>
               </div>
             </div>

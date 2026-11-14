@@ -128,7 +128,7 @@ export default function ProductsPage() {
               </p>
               <div className="mt-4 flex gap-3">
                 <a
-                  href="tel:0714478552"
+                  href="tel:0711114767"
                   className="inline-flex items-center px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-dark transition-colors"
                 >
                   Call for Prices
@@ -219,7 +219,7 @@ export default function ProductsPage() {
                       Get Price
                     </a>
                     <a
-                      href="tel:0714478552"
+                      href="tel:0711114767"
                       className="inline-flex items-center justify-center px-3 py-2 border border-border text-foreground text-sm font-medium rounded-lg hover:bg-light-gray transition-colors"
                     >
                       Call

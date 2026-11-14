@@ -144,7 +144,7 @@ export default function AboutPage() {
             Come visit us in Ja-Ela
           </h2>
           <p className="mt-3 text-blue-100 max-w-xl mx-auto">
-            266 Negombo Road, Ja-Ela. Open Monday to Saturday, 9 AM to 5:30 PM.
+            266 Negombo Road, Ja-Ela. Open Monday to Saturday, 9 AM to 5:30 PM, by appointment.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -154,10 +154,10 @@ export default function AboutPage() {
               Book an Appointment
             </Link>
             <a
-              href="tel:0714478552"
+              href="tel:0711114767"
               className="inline-flex items-center justify-center px-8 py-3 bg-white/10 text-white font-semibold rounded-lg border border-white/20 hover:bg-white/20 transition-colors"
             >
-              Call 071 447 8552
+              Call 071 111 4767
             </a>
           </div>
         </div>
