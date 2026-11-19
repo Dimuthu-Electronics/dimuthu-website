@@ -28,6 +28,8 @@ export interface ParsedInvoice {
   payment_method: PaymentMethod;
   /** A price given before the work — set by "paid: estimate" / "paid: quotation". */
   quote: QuoteKind | null;
+  /** "YYYY-MM-DD" from a date: line; null means today. */
+  invoice_date: string | null;
 }
 
 export type QuoteKind = "Estimate" | "Quotation";
@@ -51,6 +53,7 @@ addr: 14 Station Road, Ja-Ela
 warranty: 6 months on the replaced panel
 note: Old panel returned to customer
 method: cash / card / bank
+date: 2026/11/17   (leave out for today)
 
 *To fill the MODEL column, put it before a comma:*
 Philips 40PFT5100, Display replacement = 55000
@@ -77,7 +80,17 @@ const QUOTE_LINE = /^(estimate|quote|quotation)(\s*[:=].*)?$/i;
 function quoteKind(word: string): QuoteKind {
   return /^estimate$/i.test(word) ? "Estimate" : "Quotation";
 }
-const PREFIX = /^(addr|address|note|notes|warranty|paid|method)\s*[:=]\s*(.*)$/i;
+const PREFIX = /^(addr|address|note|notes|warranty|paid|method|date)\s*[:=]\s*(.*)$/i;
+
+/** "2026/11/17", "2026-11-17", "17/11/2026" -> "2026-11-17"; null if it isn't a real date. */
+function parseDate(raw: string): string | null {
+  const parts = raw.split(/\s*[/.\-]\s*/).map(Number);
+  if (parts.length !== 3 || parts.some((n) => !Number.isInteger(n))) return null;
+  const [year, month, day] = parts[0] > 31 ? parts : [parts[2], parts[1], parts[0]];
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (year < 2000 || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return null;
+  return date.toISOString().slice(0, 10);
+}
 /** 7+ digits, optional +, spaces/dashes/brackets — and no letters anywhere. */
 const PHONE = /^\+?[\d][\d\s\-()]{6,19}$/;
 /** Trailing price, with an optional Rs / = / @ in front of it. */
@@ -157,6 +170,7 @@ export function parseInvoiceMessage(text: string): ParseResult {
     warranty: null,
     payment_method: "cash",
     quote: quoteLine ? quoteKind(quoteLine.split(/[\s:=]/)[0]) : null,
+    invoice_date: null,
   };
 
   const unreadable: string[] = [];
@@ -170,6 +184,17 @@ export function parseInvoiceMessage(text: string): ParseResult {
       else if (key === "note" || key === "notes") invoice.notes = value || null;
       else if (key === "warranty") invoice.warranty = value || null;
       else if (key === "method") invoice.payment_method = METHODS[value.toLowerCase()] ?? "cash";
+      else if (key === "date") {
+        // Left blank in a template: today.
+        if (!value) continue;
+        invoice.invoice_date = parseDate(value);
+        if (!invoice.invoice_date) {
+          return {
+            ok: false,
+            error: `I couldn't read that date: ${value}\n\nWrite it like:\ndate: 2026/11/17`,
+          };
+        }
+      }
       else if (key === "paid") {
         // Left blank in a template: an ordinary invoice, nothing paid.
         if (!value) continue;

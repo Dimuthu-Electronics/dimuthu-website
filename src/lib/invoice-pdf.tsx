@@ -55,7 +55,7 @@ export async function buildInvoicePdf(parsed: ParsedInvoice): Promise<BuiltInvoi
     customer_name: parsed.customer_name,
     customer_phone: parsed.customer_phone,
     customer_address: parsed.customer_address,
-    invoice_date: todayInColombo(),
+    invoice_date: parsed.invoice_date ?? todayInColombo(),
     total_amount: total,
     advance_paid,
     advance_note: parsed.advance_note,

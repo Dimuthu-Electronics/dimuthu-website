@@ -190,6 +190,7 @@ Optional extras, one per line:
 | `paid:` left blank | an ordinary invoice — safe to keep in a template |
 | `note: Old panel returned` | notes panel |
 | `method: cash / card / bank` | payment method (default cash) |
+| `date: 2026/11/17` | bill date instead of today (`17/11/2026` and `-` also work; blank = today). An estimate's *valid until* counts from this date |
 
 Two shortcuts on a job line:
 
